@@ -8,8 +8,8 @@ with open("input.txt") as file:
     total = 0
     instrs = re.findall(r"(mul\(\d+,\d+\))|(do\(\))|(don't\(\))", line)
     for inst in instrs:
-        if inst[0]:
-            if (on): total += eval(inst[0])
-        else:
+        if inst[0] and on:
+            total += eval(inst[0])
+        elif not inst[0]:
             on = inst[1]
     print(total)
