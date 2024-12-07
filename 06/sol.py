@@ -67,18 +67,17 @@ with open("input.txt") as file:
     print(len(visited.keys()))
 
     total = 0
-    iter = 0
     lp = dict.fromkeys(visited.keys(),[])
     for i, j in lp.keys():
-        iter += 1
         visited = defaultdict(list)
         new_map = [l[:] for l in copy[:]]
-        if new_map[i][j] in '<>^v': continue
+        if new_map[i][j] in '<>^v': continue # don't overwrite guard
         new_map[i][j] = '#'
         gi, gj = guard(new_map)
+        
         while CONT == (res := tick(new_map)): pass
+        
         if res == CYCLE:
             total += 1
-        print('\r' + str(round(iter / len(lp.keys()) * 100, 2)) + '%', end="")
     
-    print('\n' + repr(total))
+    print(total)
