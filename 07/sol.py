@@ -10,7 +10,6 @@ def solve(target, components, all_ops):
                 case '+': total += c
                 case '*': total *= c
                 case '||': total = int(str(total) + str(c))
-                case _: raise
         if total == target:
             return target
 
