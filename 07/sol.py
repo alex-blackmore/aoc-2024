@@ -1,7 +1,7 @@
 import itertools as it
 
 def solve(target, components, all_ops):
-    all = it.product(*([all_ops] * (len(components) - 1)))
+    all = it.product(all_ops, repeat=(len(components) - 1))
     
     for ops in all:
         total = components[0]
