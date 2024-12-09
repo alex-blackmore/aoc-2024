@@ -20,5 +20,7 @@ with open("input.txt") as file:
     rules = [line.split("|") for line in s1.strip().split("\n")]
     updates = [arr.split(",") for arr in s2.strip().split("\n")]
     print(sum([int(arr[(len(arr) - 1) // 2]) for arr in updates if good(rules, arr)]))
+    print(rules)
+    # print(updates)
     mod = [reorder(rules, line) for line in updates if reorder(rules, line)]
     print(sum([int(arr[(len(arr) - 1) // 2]) for arr in mod]))
