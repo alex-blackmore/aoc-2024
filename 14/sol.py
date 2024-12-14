@@ -35,7 +35,7 @@ def print_grid(robots, t):
     for i in range(WIDTH):
         for j in range(HEIGHT):
             if (i, j) in final_pos:
-                print('*', end="")
+                print('#', end="")
             else:
                 print('.', end="")
         print()
