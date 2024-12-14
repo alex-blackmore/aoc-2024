@@ -62,7 +62,7 @@ with open("input.txt") as file:
     # need diff = 202 or 206 (202 happens first)
 
     # so need to run 101 - 27 = 74 cycles of 103 starting at 87
-    # or equivalently 103 - 27 = 76 cycles of 101 starting at 33
+    # or equivalently 103 - 27 = 76 cycles of 101 starting at 33 (+2 since the 202 diff will mean i am 2 behind)
     # need to run 87 + 74 * 103 == 33 + 76 * 101 times
     # which is equal to 7709
 
