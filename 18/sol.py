@@ -45,7 +45,6 @@ def bfs(grid, coord, visited):
     bounds = list(it.product(range(len(grid)), range(len(grid[0]))))
     i, j = coord
     nbs = [(i + di, j + dj) for (di, dj) in ALL_DIRECTIONS if (i + di, j + dj) in bounds and not grid[i + di][j + dj]]
-    if len(nbs) == 0: return False
     return any(bfs(grid, nb, visited) for nb in nbs)
 
 with open("input.txt") as file:
