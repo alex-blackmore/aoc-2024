@@ -1,5 +1,4 @@
 import itertools as it
-from collections import defaultdict
 
 WALL = '#'
 EMPTY = '.'
