@@ -77,7 +77,6 @@ def door_path(start, end):
             else:
                 path += ['<'] * abs(ej - sj)
     
-    # print(f'{start} -> {end}: {''.join(path)}')
     return path
 
 def door_input(code):
