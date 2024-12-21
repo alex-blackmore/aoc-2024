@@ -17,14 +17,6 @@ door_coords = {
     'A': (3, 2)
 }
 
-dir_coords = {
-    '^': (0, 1),
-    'A': (0, 2),
-    '<': (1, 0),
-    'v': (1, 1),
-    '>': (1, 2)
-}
-
 mv_translator = {
     ('A', 'A'): (('A', 'A'),),
     ('A', '^'): (('A', '<'), ('<', 'A')),
@@ -97,57 +89,6 @@ def door_input(code):
 
     return inp
 
-@ft.cache
-def dir_path(start, end):
-    if start == end: return []
-    path = []
-    si, sj = dir_coords[start]
-    ei, ej = dir_coords[end]
-    # down
-    if ei >= si:
-        # put left first if possible
-        if (ej != 0 or si != 0) and not ej > sj:
-            path += ['<'] * abs(ej - sj)
-            path += ['v'] * abs(ei - si)
-        # down first
-        else:
-            path += ['v'] * abs(ei - si)
-            if ej > sj:
-                path += ['>'] * abs(ej - sj)
-            else:
-                path += ['<'] * abs(ej - sj)
-            
-
-    # up
-    else:
-        # right/left first
-        if ej > sj:
-            path += ['>'] * abs(ej - sj)
-        else:
-            path += ['<'] * abs(ej - sj)
-        path += ['^'] * abs(ei - si)
-
-    return path
-
-
-def dir_input(inp):
-    ninp = []
-    finp = ['A'] + inp
-    for s, e in zip(finp, finp[1:]):
-        ninp += dir_path(s, e)
-        ninp += ['A']
-    
-    return ninp
-
-def complexity(code, nrobots):
-    directions = ['A'] + door_input(code)
-    for _ in range(nrobots):
-        directions = dir_input(directions)
-
-    tlen = len(directions) - 1
-    num = int(re.findall(r'\d+', ''.join(code))[0])
-    return tlen * num
-
 def fast_complexity(code, nrobots):
     num = int(re.findall(r'\d+', ''.join(code))[0])
     directions = ['A'] + door_input(code)
@@ -174,5 +115,5 @@ def fast_complexity(code, nrobots):
 
 with open("input.txt") as file:
     codes = [[c for c in line] for line in file.read().strip().split("\n")]
-    print(sum(complexity(c, 2) for c in codes))
+    print(sum(fast_complexity(c, 2) for c in codes))
     print(sum(fast_complexity(c, 25) for c in codes))
